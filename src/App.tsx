@@ -1,11 +1,14 @@
+import { ToastContainer } from "react-toastify";
+
 import './styles/App.scss';
 
-function App() {
+export const App = () => {
 	return (
-		<div className="App">
-			HelloWorld
-		</div>
+		<>
+			<div className="App">
+				test
+			</div>
+			<ToastContainer autoClose={1500} position="bottom-right" />
+		</>
 	);
-}
-
-export default App;
+};
