@@ -19,6 +19,7 @@ interface IEditPostValues {
 	creator: string,
 	title: string,
 	link: string,
+	contentSnippet: string,
 	content: string,
 	categories: string,
 };
@@ -40,6 +41,7 @@ export const PostForm = ({ onCloseModal, formState }: IProps) => {
 		title: isEditFormState ? currentPost?.title ?? "No header" : "",
 		link: isEditFormState ? currentPost?.link ?? "No link" : "",
 		content: isEditFormState ? currentPost?.content ?? "No content" : "",
+		contentSnippet: isEditFormState ? currentPost?.contentSnippet ?? "No snippet" : "",
 		categories: isEditFormState
 			? parseFromArrayToHashtagString(currentPost?.categories)
 			?? "No hashtags"
@@ -96,6 +98,14 @@ export const PostForm = ({ onCloseModal, formState }: IProps) => {
 							name="categories"
 							error={props.errors.categories}
 							label="Hashtags:"
+						/>
+						<FormikInput
+							type="text"
+							onChange={props.handleChange}
+							value={props.values.contentSnippet}
+							name="contentSnippet"
+							error={props.errors.contentSnippet}
+							label="Snippet:"
 						/>
 						<FormikInput
 							type="textarea"

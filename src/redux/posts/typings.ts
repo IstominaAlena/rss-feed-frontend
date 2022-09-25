@@ -32,6 +32,7 @@ export interface IAddPostBody {
 	link: string,
 	content: string,
 	categories: Array<string>,
+	contentSnippet: string,
 };
 
 export interface IDeletePost {
