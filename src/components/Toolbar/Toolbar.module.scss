@@ -1,0 +1,23 @@
+@import "../../styles/variables.scss";
+
+.toolbarContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-top: 1px solid $line-color;
+  border-bottom: 1px solid $line-color;
+
+  .addPostButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 170px;
+
+    .icon {
+      margin-right: 5px;
+
+      fill: $background-color;
+    }
+  }
+}

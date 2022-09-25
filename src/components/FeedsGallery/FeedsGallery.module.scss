@@ -1,0 +1,94 @@
+@import "../../styles/variables.scss";
+
+.section {
+  min-height: 70vh;
+}
+
+.feedsItem {
+  position: relative;
+  padding: 20px 20px;
+  border-bottom: 1px solid $line-color;
+
+  .feedsContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 40px;
+    grid-column-gap: 20px;
+    grid-row-gap: 10px;
+    font-size: 20px;
+    font-weight: 700;
+
+    h2 {
+      font-size: 28px;
+    }
+
+    img {
+      grid-column-start: 1;
+      grid-column-end: 2;
+      grid-row-start: 1;
+      grid-row-end: 7;
+      height: 340px;
+    }
+
+    p {
+      grid-row-start: 3;
+      grid-row-end: 5;
+      font-size: 16px;
+      font-weight: 400;
+      color: $secondary-text-color;
+
+      a {
+        font-weight: 700;
+        color: $main-text-color;
+        text-decoration: underline;
+      }
+    }
+
+    p:last-child {
+      grid-column-start: 2;
+      grid-column-end: 2;
+      grid-row-start: 7;
+      grid-row-end: 7;
+      margin-left: auto;
+
+      a {
+        color: $accent-color;
+
+        &:hover,
+        &:focus {
+          color: $accent-hover-color;
+        }
+      }
+    }
+  }
+
+  .editButtonsContainer {
+    position: absolute;
+    top: 20px;
+    right: -10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+
+    .editButton {
+      padding: 5px;
+      border-radius: 50%;
+      background-color: transparent;
+
+      .icon {
+        fill: $accent-color;
+      }
+
+      &:hover,
+      &:focus {
+        background-color: $shadow-color;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

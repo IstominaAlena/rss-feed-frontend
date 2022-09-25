@@ -1,0 +1,43 @@
+@import "../../styles/variables.scss";
+
+.searchForm {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 50%;
+
+  div {
+    margin: 0;
+    width: 100%;
+
+    .searchInput {
+      padding-left: 50px;
+    }
+  }
+
+  .searchButton {
+    position: absolute;
+    top: 50%;
+    left: -15px;
+    translate: 0 -50%;
+    margin-left: 20px;
+    padding: 7px 9px;
+    border-radius: 50%;
+    background-color: transparent;
+    z-index: 1000;
+
+    &:hover,
+    &:focus {
+      background-color: $shadow-color;
+    }
+
+    &:hover .icon,
+    &:focus .icon {
+      fill: $accent-color;
+    }
+
+    .icon {
+      fill: $body-color;
+    }
+  }
+}

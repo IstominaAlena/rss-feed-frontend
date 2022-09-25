@@ -1,0 +1,15 @@
+@import "../../styles/variables.scss";
+
+.formTitle {
+  margin-bottom: 30px;
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+  color: $accent-color;
+  text-decoration: underline;
+}
+
+.continueButton {
+  display: block;
+  margin: 0 auto;
+}

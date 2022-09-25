@@ -1,0 +1,15 @@
+@import "../../styles/variables.scss";
+
+.section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  padding: 10px;
+  background-color: $accent-color;
+}
+
+.text {
+  font-size: 20px;
+  color: $background-color;
+}
