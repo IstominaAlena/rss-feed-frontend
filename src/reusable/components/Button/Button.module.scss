@@ -1,0 +1,20 @@
+@import "../../../styles/variables.scss";
+
+.defaultButton {
+  padding: 8px 15px;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+  color: $background-color;
+  background-color: $accent-color;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background-color: $accent-hover-color;
+  }
+}

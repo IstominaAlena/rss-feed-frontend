@@ -20,10 +20,17 @@ const authPersistConfig = {
 	whitelist: ["token", "user"]
 };
 
+const postsPersistConfig = {
+	key: "posts/currentPage",
+	storage,
+	whitelist: ["page"]
+};
+
 const authPersistedReducer = persistReducer(authPersistConfig, authReducer);
+const postsPersistedReducer = persistReducer(postsPersistConfig, postsReducer);
 
 const rootReducer = combineReducers({
-	newsFeed: postsReducer,
+	newsFeed: postsPersistedReducer,
 	auth: authPersistedReducer
 });
 

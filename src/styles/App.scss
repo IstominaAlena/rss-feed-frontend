@@ -28,7 +28,12 @@ body {
   font-weight: 400;
   font-size: 11px;
   line-height: 1.2;
-
   color: $main-text-color;
-  background-color: $secondary-background-color;
+  background-color: $body-color;
+}
+
+.App {
+  margin: 0 auto;
+  width: 1200px;
+  background-color: $background-color;
 }

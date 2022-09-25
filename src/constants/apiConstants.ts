@@ -1,5 +1,7 @@
 export const BASE_URL = "http://localhost:4000/api";
 
+export const POSTS_PER_PAGE = 10;
+
 export enum EPath {
 	POSTS = "/posts",
 	SIGN_UP = "/auth/signup",
@@ -7,4 +9,3 @@ export enum EPath {
 	LOGOUT = "/auth/logout",
 	CURRENT = "/auth/current"
 };
-export const SIGN_UP = "Successful registration. Pleace login to continue.";

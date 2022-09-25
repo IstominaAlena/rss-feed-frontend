@@ -1,0 +1,32 @@
+@import "../../../styles/variables.scss";
+
+.errorContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  height: 85vh;
+
+  .icon {
+    font-size: 100px;
+    margin-right: 10px;
+  }
+
+  .container {
+    margin-top: 30px;
+
+    .text {
+      font-size: 30px;
+      font-weight: 700;
+    }
+
+    .message {
+      font-size: 30px;
+      white-space: pre-wrap; /* CSS3 */
+      white-space: -moz-pre-wrap; /* Firefox */
+      white-space: -pre-wrap; /* Opera <7 */
+      white-space: -o-pre-wrap; /* Opera 7 */
+      word-wrap: break-word; /* IE */
+    }
+  }
+}

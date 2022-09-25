@@ -1,10 +1,12 @@
-import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
 
 import { IPosts } from "./typings";
 import { getAllPosts, getPostById, addPost, deletePost, updatePost } from "./postsOperations";
 
 const initialState: IPosts = {
 	posts: [],
+	page: 1,
+	postsAmount: 0,
 	currentPost: null,
 	isLoading: false,
 	error: null
@@ -13,12 +15,22 @@ const initialState: IPosts = {
 const postsSlice = createSlice({
 	name: "posts",
 	initialState,
-	reducers: {},
+	reducers: {
+		removeCurrentPost: (state) => ({
+			...state,
+			currentPost: null,
+		}),
+		setPage: (state, { payload }: PayloadAction<number>) => ({
+			...state,
+			page: payload
+		}),
+	},
 	extraReducers: (builder) => {
 		builder.addCase(
 			getAllPosts.fulfilled,
 			(state, { payload }) => {
-				state.posts = payload ?? initialState.posts;
+				state.posts = payload?.posts ?? initialState.posts;
+				state.postsAmount = payload?.postsAmount ?? initialState.postsAmount;
 				state.isLoading = false;
 				state.currentPost = initialState.currentPost;
 			}
@@ -31,12 +43,22 @@ const postsSlice = createSlice({
 				state.currentPost = initialState.currentPost;
 			}
 		);
-		builder.addMatcher(
-			isAnyOf(
-				getPostById.fulfilled,
-				addPost.fulfilled,
-				updatePost.fulfilled
-			),
+		builder.addCase(
+			updatePost.fulfilled,
+			(state, { payload }) => {
+				state.posts = state.posts.map((item) => item._id === payload?._id ? payload : item);
+				state.isLoading = false;
+			}
+		);
+		builder.addCase(
+			addPost.fulfilled,
+			(state, { payload }) => {
+				state.posts = payload ? [payload, ...state.posts,] : state.posts;
+				state.isLoading = false;
+			}
+		);
+		builder.addCase(
+			getPostById.fulfilled,
 			(state, { payload }) => {
 				state.currentPost = payload ?? initialState.currentPost;
 				state.isLoading = false;
@@ -72,3 +94,4 @@ const postsSlice = createSlice({
 });
 
 export const postsReducer = postsSlice.reducer;
+export const { removeCurrentPost, setPage } = postsSlice.actions;

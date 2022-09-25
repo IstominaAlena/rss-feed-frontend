@@ -1,15 +1,27 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
 
-import { EPath } from "../../constants/apiConstants";
-import { IPostItem, IAddPostBody, IDeletePost, IUpdatePostBody } from "./typings";
+import { EPath, POSTS_PER_PAGE } from "../../constants/apiConstants";
+import {
+	IPostItem,
+	IAddPostBody,
+	IDeletePost,
+	IUpdatePostBody,
+	IGetAllPostsBody,
+	IGetAllPostsResponce
+} from "./typings";
 import { instance } from "../../utils/axiosInstance";
 
-export const getAllPosts = createAsyncThunk<Array<IPostItem> | undefined>(
+export const getAllPosts = createAsyncThunk<IGetAllPostsResponce | undefined, IGetAllPostsBody>(
 	"posts/getAllPosts",
-	async () => {
+	async ({ page, title }) => {
 		try {
-			const { data } = await instance.get<Array<IPostItem>>(EPath.POSTS);
+			const { data } = await instance.get<IGetAllPostsResponce>(EPath.POSTS, {
+				params: {
+					limit: POSTS_PER_PAGE,
+					page,
+					title
+				}
+			});
 			return data;
 		} catch (error) {
 			if (error instanceof Error) {
@@ -51,8 +63,7 @@ export const deletePost = createAsyncThunk<string | undefined, string>(
 	"posts/deletePost",
 	async (id) => {
 		try {
-			const { data } = await instance.delete<IDeletePost>(EPath.POSTS + "/" + id);
-			toast.success(data.message);
+			await instance.delete<IDeletePost>(EPath.POSTS + "/" + id);
 			return id;
 		} catch (error) {
 			if (error instanceof Error) {
